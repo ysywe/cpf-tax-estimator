@@ -1,0 +1,8 @@
+[
+    {"effective_from": "2015-01", "ow_ceiling": 5000.00, "aw_ceiling": 102000.00},
+    {"effective_from": "2016-01", "ow_ceiling": 6000.00, "aw_ceiling": 102000.00},
+    {"effective_from": "2023-09", "ow_ceiling": 6300.00, "aw_ceiling": 102000.00},
+    {"effective_from": "2024-01", "ow_ceiling": 6800.00, "aw_ceiling": 102000.00},
+    {"effective_from": "2025-01", "ow_ceiling": 7400.00, "aw_ceiling": 102000.00},
+    {"effective_from": "2026-01", "ow_ceiling": 8000.00, "aw_ceiling": 102000.00}
+]
