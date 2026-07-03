@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cpf-estimate-tool"
+version = "0.1.0"
+description = "A CPF and IRAS Tax calculation estimation backend engine."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Framework :: FastAPI",
+]
+dependencies = [
+    "fastapi",
+    "httpx",
+    "uvicorn",
+    "sqlalchemy",
+    "asyncpg",
+    "pydantic-settings",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["app/tests"]
+asyncio_mode = "auto"
+
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
