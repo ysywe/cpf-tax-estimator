@@ -99,7 +99,7 @@ async def get_cpf_breakdown(
     age: int,
     income_date: date
     ) -> dict:
-    age_grp = await get_cpf_age_group(age)
+    age_grp = get_cpf_age_group(age)
 
     contrib_data = await calculate_cpf_contribution(db, monthly_income, additional_income, age_grp, income_date)
     total_contrib = contrib_data["annual_summary"]["total_contribution"]

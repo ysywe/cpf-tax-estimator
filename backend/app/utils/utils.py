@@ -3,7 +3,7 @@ from datetime import datetime, date
 def parse_effective_date(value: str) -> date:
     return datetime.strptime(value, "%Y-%m").date()
 
-async def get_cpf_age_group(age: int) -> str:
+def get_cpf_age_group(age: int) -> str:
     if age <= 35:
         return "35 years & below"
     elif 35 < age <= 45:
