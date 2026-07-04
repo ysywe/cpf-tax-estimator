@@ -2,7 +2,6 @@ import pytest
 from datetime import date
 from decimal import Decimal
 
-from app.services.cpf_service import calculate_cpf_contribution, calculate_cpf_allocation
 from app.services.tax_service import get_tax_breakdown, get_chargeable_income
 
 pytestmark = pytest.mark.asyncio

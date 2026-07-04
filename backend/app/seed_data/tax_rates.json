@@ -24,7 +24,7 @@
             {"min_income": 40000.00, "max_income": 80000.00, "tax_rate": 7.00, "tax_payable": 550.00},
             {"min_income": 80000.00, "max_income": 120000.00, "tax_rate": 11.50, "tax_payable": 3350.00},
             {"min_income": 120000.00, "max_income": 160000.00, "tax_rate": 15.00, "tax_payable": 7950.00},
-            {"min_income": 160000.00, "max_income": 20000.00, "tax_rate": 18.00, "tax_payable": 13950.00},
+            {"min_income": 160000.00, "max_income": 200000.00, "tax_rate": 18.00, "tax_payable": 13950.00},
             {"min_income": 200000.00, "max_income": 240000.00, "tax_rate": 19.00, "tax_payable": 21150.00},
             {"min_income": 240000.00, "max_income": 280000.00, "tax_rate": 19.50, "tax_payable": 28750.00},
             {"min_income": 280000.00, "max_income": 320000.00, "tax_rate": 20.00, "tax_payable": 36550.00},

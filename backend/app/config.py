@@ -1,5 +1,9 @@
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field, computed_field
+from pydantic import Field
+
+BASE_DIR = Path(__file__).resolve().parents[1]
 
 class Settings(BaseSettings):
     DB_USER: str = Field(default="postgres")
@@ -11,9 +15,9 @@ class Settings(BaseSettings):
     @property
     def DATABASE_URL(self) -> str:
         return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
-
+    
     model_config = SettingsConfigDict(
-        env_file=".env", 
+        env_file=BASE_DIR / ".env",
         env_file_encoding="utf-8",
         extra="ignore"
     )
