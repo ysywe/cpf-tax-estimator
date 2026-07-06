@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app.services.cpf_service import get_cpf_breakdown
 from app.services.tax_service import get_tax_breakdown
-from backend.app.schemas.calculate_request import CalculateTaxRequest
+from app.schemas.calculate_request import CalculateTaxRequest
 from app.schemas.response_wrapper import ResponseWrapperResponse
 
 db_session = Annotated[AsyncSession, Depends(get_db)]

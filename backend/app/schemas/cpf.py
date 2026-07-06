@@ -15,8 +15,8 @@ class AnnualSummary(BaseModel):
     cpf_liable_bonus: Decimal = Field(description="Additional wage amount capped by additonal wage ceiling")
 
 class CPFRates(BaseModel):
-    employee_rate: Decimal = Field(ge=0, desription="Employee CPF contribution rate")
-    employer_rate: Decimal = Field(ge=0, desription="Employer CPF contribution rate")
+    employee_rate: Decimal = Field(ge=0, description="Employee CPF contribution rate")
+    employer_rate: Decimal = Field(ge=0, description="Employer CPF contribution rate")
 
 class ContributionWrapper(BaseModel):
     monthly_summary: MonthlySummary
@@ -25,7 +25,7 @@ class ContributionWrapper(BaseModel):
 
 class BaseAccount(BaseModel):
     amount: Decimal = Field(description="Amount in allocation account")
-    rate: Decimal = Field(Description="Amount rate in allocation account")
+    rate: Decimal = Field(description="Amount rate in allocation account")
 
 class OrdinaryAccount(BaseAccount):
     pass
