@@ -16,8 +16,8 @@ export default function CurrencyInput({
                     rounded-xl border border-slate-300
                     bg-white
                     px-4 py-3
-                     hover:border-sky-300
-            ">
+                     hover:border-sky-300"
+            >
                 <span className="mr-4 text-slate-500 select-none">
                     SGD
                 </span>
@@ -37,8 +37,8 @@ export default function CurrencyInput({
                         outline-none
                         text-slate-800
                         placeholder:text-slate-300
-                        [appearance:textfield]
-                "/>
+                        [appearance:textfield]"
+                />
             </div>
         </div>
     );
