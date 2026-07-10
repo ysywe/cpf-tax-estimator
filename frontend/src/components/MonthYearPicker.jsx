@@ -84,13 +84,14 @@ export default function MonthYearPicker({
                 type="button"
                 onClick={() => setOpen((o) => !o)}
                 className="
-                    flex w-full items-center justify-between
+                    flex items-center justify-between
+                    w-sm
                     rounded-xl border border-slate-300
-                    px-4 py-3
-                    hover:border-sky-300
-                    transition"     
+                    px-4 
+                    py-3
+                    hover:border-sky-300"     
             >
-                <span className="text-sm text-slate-600">
+                <span className="font-light text-slate-500">
                     {value
                         ? `${String(selectedMonth).padStart(2, "0")}/${selectedYear}`
                         : "MM/YYYY"}
@@ -126,8 +127,7 @@ export default function MonthYearPicker({
                         border
                         border-sky-200
                         bg-white
-                        p-4
-                        sm:p-5
+                        p-5
                         shadow-md"                
                 >
                     {/* PICKER HEADER */}
@@ -144,11 +144,11 @@ export default function MonthYearPicker({
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
                                 fill="none" viewBox="0 0 24 24" 
-                                strokeWidth={1.5} 
+                                strokeWidth={2} 
                                 stroke="currentColor" 
                                 className="
                                     size-5
-                                    text-slate-500
+                                    text-indigo-800
                                     hover:text-sky-600
                                     cursor-pointer"
                             >
@@ -170,6 +170,7 @@ export default function MonthYearPicker({
                                 py-1
                                 font-semibold
                                 cursor-pointer
+                                text-indigo-800
                                 hover:bg-slate-100
                             "
                         >
@@ -190,11 +191,11 @@ export default function MonthYearPicker({
                                 xmlns="http://www.w3.org/2000/svg" 
                                 fill="none" 
                                 viewBox="0 0 24 24" 
-                                strokeWidth={1.5} 
+                                strokeWidth={2} 
                                 stroke="currentColor" 
                                 className="
                                     size-5
-                                    text-slate-500
+                                    text-indigo-800
                                     hover:text-sky-600
                                     cursor-pointer"
                             >
@@ -229,6 +230,7 @@ export default function MonthYearPicker({
                                                 rounded-full
                                                 py-2
                                                 cursor-pointer
+                                                font-light
                                                 ${
                                                     active
                                                         ? "bg-indigo-800 text-white"
@@ -250,13 +252,14 @@ export default function MonthYearPicker({
                                     text-indigo-800
                                     cursor-pointer
                                     hover:text-indigo-600
-                                    flex gap-2 items-center"
+                                    flex gap-2 items-center
+                                    font-semibold"
                             >Clear Selection
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
                                     fill="none" 
                                     viewBox="0 0 24 24" 
-                                    strokeWidth={1.5} 
+                                    strokeWidth={2.5} 
                                     stroke="currentColor" 
                                     className="size-4"
                                 >
@@ -291,6 +294,7 @@ export default function MonthYearPicker({
                                                 rounded-full
                                                 py-2
                                                 cursor-pointer
+                                                font-light
                                                 ${
                                                     outside
                                                         ? "text-slate-600"
@@ -317,13 +321,14 @@ export default function MonthYearPicker({
                                     text-indigo-800
                                     cursor-pointer
                                     hover:text-indigo-600
-                                    flex gap-2 items-center"
+                                    flex gap-2 items-center
+                                    font-semibold"
                             >Clear Selection
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
                                     fill="none" 
                                     viewBox="0 0 24 24" 
-                                    strokeWidth={1.5} 
+                                    strokeWidth={2.5} 
                                     stroke="currentColor" 
                                     className="size-4"
                                 >

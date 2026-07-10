@@ -2,7 +2,7 @@ import MonthYearPicker from "./MonthYearPicker";
 
 export default function Landing({data, setData, onNext}) {
     return (
-        <div className="mx-auto px-5 pt-10 pb-20">
+        <div className="mx-auto pt-10 pb-20">
             {/* Header */}
             <div className="text-xl text-center font-bold mb-12">
                 <h2>A tool for employers and employees to estimate your CPF and personal income tax.</h2>
@@ -11,21 +11,19 @@ export default function Landing({data, setData, onNext}) {
                 </p>
             </div>
 
-            {/* Employee Information */}
+            {/* Employee Information Form */}
             <form className="
-                w-full
-                max-w-xl
+                flex flex-col items-center
                 mx-auto
-                border border-slate-200
-                rounded-2xl
+                w-full
+                border border-none
+                rounded-t-lg
                 bg-white
                 p-6
-                sm:p-8
-                lg:p-10
-                shadow-sm
-                space-y-8"
+                sm:w-3xl sm:p-20
+                space-y-8" 
             >
-                <h2 className="font-bold text-left text-2xl">Employee information</h2>
+                <h2 className="font-bold text-2xl">Employee information</h2>
                 <p className="text-sm leading-6 my-4 text-slate-600">
                     Select your residency status and birth month year.
                 </p>
@@ -39,20 +37,30 @@ export default function Landing({data, setData, onNext}) {
                         })
                     }
                 />
-
+            </form>
+             <div className="
+                max-w-5xl
+                mx-auto
+                rounded-b-lg
+                bg-indigo-50
+                p-6
+                sm:max-w-3xl"
+            >
                 <button
                     onClick={onNext}
                     className="
                         py-3
-                        w-full rounded-xl
+                        w-full 
+                        rounded-full
                         bg-indigo-800
                         text-white 
+                        font-bold
                         cursor-pointer
                         hover:bg-indigo-700
-                        transition delay-100 ease-in-out"
+                        transition delay-100 ease-in-out"                     
                 >Next
                 </button>
-            </form>
+            </div>
         </div>
     );
 }

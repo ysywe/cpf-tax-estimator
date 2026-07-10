@@ -14,7 +14,7 @@ export default function ContributionForm({data, setData, onBack, onSubmit}) {
     };
 
     return (
-        <div className="mx-auto px-5 pt-10 pb-20">
+        <div className="mx-auto pt-10 pb-20">
             {/* Header */}
             <div className="text-xl text-center font-bold mb-12">
                 <h2>A tool for employers and employees to estimate your CPF and personal income tax.</h2>
@@ -23,22 +23,22 @@ export default function ContributionForm({data, setData, onBack, onSubmit}) {
                 </p>
             </div>
 
+            {/* CPF Contribution Form */}
             <form 
+                id="cpf-form"
                 onSubmit={(e) => {
                     e.preventDefault();
                     onSubmit();
                 }}
                 className="
-                    w-full
-                    max-w-xl
+                    flex flex-col items-center
                     mx-auto
-                    border border-slate-200
-                    rounded-2xl
+                    w-full
+                    border border-none
+                    rounded-t-lg
                     bg-white
                     p-6
-                    sm:p-8
-                    lg:p-10
-                    shadow-sm
+                    sm:w-3xl sm:p-20
                     space-y-8"        
             >
                 <h2 className="font-bold text-left text-2xl">Contribution details</h2>
@@ -68,34 +68,48 @@ export default function ContributionForm({data, setData, onBack, onSubmit}) {
                     value={data.additionalWages}
                     onChange={handleInputChange}
                 />
-
-                <div className="flex justify-between gap-30">
-                    <button
-                        onClick={onBack}
-                        className="
-                            py-3
-                            w-full rounded-xl
-                            bg-slate-100
-                            text-slate-400
-                            cursor-pointer
-                            hover:text-slate-600
-                            transition delay-100 ease-in-out"                     
-                    >Back
-                    </button>
-                    <button
-                        type="submit"
-                        className="
-                            py-3
-                            w-full rounded-xl
-                            bg-indigo-800
-                            text-white 
-                            cursor-pointer
-                            hover:bg-indigo-700 
-                            transition delay-100 ease-in-out"             
-                    >Calculate
-                    </button>
-                </div>
             </form>
+            <div className="
+                max-w-5xl
+                mx-auto
+                flex flex-col gap-4
+                rounded-b-lg
+                bg-indigo-50
+                p-6
+                sm:w-3xl sm:flex-row sm:justify-between"
+            >
+                <button
+                    onClick={onBack}
+                    className="
+                        py-3
+                        w-full 
+                        sm:w-40
+                        rounded-full
+                        border border-indigo-800
+                        text-indigo-800
+                        font-bold
+                        cursor-pointer
+                        hover:bg-slate-200
+                        transition delay-100 ease-in-out"                     
+                >Back
+                </button>
+                <button
+                    form="cpf-form"
+                    type="submit"
+                    className="
+                        p-3
+                        w-full
+                        sm:w-40
+                        rounded-full
+                        bg-indigo-800
+                        text-white 
+                        font-bold
+                        cursor-pointer
+                        hover:bg-indigo-700 
+                        transition delay-100 ease-in-out"             
+                >Calculate
+                </button>
+            </div>
         </div>
     );
 }

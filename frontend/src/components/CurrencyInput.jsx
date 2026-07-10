@@ -16,6 +16,7 @@ export default function CurrencyInput({
                     rounded-xl border border-slate-300
                     bg-white
                     px-4 py-3
+                    w-sm
                      hover:border-sky-300"
             >
                 <span className="mr-4 text-slate-500 select-none">
@@ -37,6 +38,7 @@ export default function CurrencyInput({
                         outline-none
                         text-slate-800
                         placeholder:text-slate-300
+                        placeholder:font-light
                         [appearance:textfield]"
                 />
             </div>

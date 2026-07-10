@@ -96,8 +96,7 @@ export default function Home() {
 
             {step === 3 && (
                 <FormResult
-                    result={result}
-                    onBack={() => setStep(2)}
+                    
                 />
             )}
         </>
