@@ -6,8 +6,22 @@ export default function ResultAccordion({
     amount,
     defaultOpen = false,
     children,
+    variant="default"
 }) {
     const [open, setOpen] = useState(defaultOpen);
+
+    const variants = {
+        default: {
+            button: "flex flex-col",
+            title: "justify-self-auto"
+        },
+
+        summary: {
+            button: "flex items-center",
+        },
+    };
+
+    const style = variants[variant];
 
     return (
         <section className="
@@ -19,17 +33,18 @@ export default function ResultAccordion({
             <button
                 type="button"
                 onClick={() => setOpen(!open)}
-                className="
-                    flex flex-col
+                className={`
+                    ${style.button}
                     gap-6
                     w-full
                     text-left
-                    px-6
-                    py-4
+                    px-7
+                    py-5
                     transition
                     cursor-pointer
-                    hover:bg-slate-50
-                    sm:flex-row sm:justify-between"
+                    hover:bg-neutral-50
+                    justify-between
+                    sm:flex-row`}
             >
                 <div>
                     <h2 className="font-bold text-slate-900">

@@ -16,7 +16,7 @@ export default function ContributionSection({result}) {
     return (
         <div className="border-slate-200 bg-white">
             <h3 className="
-                bg-slate-100
+                bg-stone-100
                 mb-5 
                 px-2
                 py-3
@@ -26,7 +26,7 @@ export default function ContributionSection({result}) {
             </h3>
 
             <div className="
-                border border-slate-300
+                border border-stone-200
                 rounded-lg
                 space-y-5 
                 p-6"
@@ -44,7 +44,7 @@ export default function ContributionSection({result}) {
                             Employee's Share
                         </p>
 
-                        <p className="mt-1  text-slate-600">
+                        <p className="mt-1 text-slate-600">
                             {`(${formatPercent(employer_rate)} x ${formatCurrency(cpf_liable_wage)}) 
                                 + (${formatPercent(employee_rate)} x ${formatCurrency(cpf_liable_bonus)})`}
                         </p>

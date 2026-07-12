@@ -38,11 +38,11 @@ export default function ContributionForm({data, setData, onBack, onSubmit}) {
                     rounded-t-lg
                     bg-white
                     p-6
-                    sm:w-3xl sm:p-20
+                    sm:w-3xl sm:p-15
                     space-y-8"        
             >
-                <h2 className="font-bold text-left text-2xl">Contribution details</h2>
-                <p className="text-sm leading-6 my-4 text-slate-600">
+                <h2 className="font-bold text-left text-2xl text-indigo-800">Contribution details</h2>
+                <p className="text-sm leading-6 text-slate-600">
                     Select your current contribution period and enter the ordinary and additional wages.
                 </p>
                 <MonthYearPicker

@@ -101,6 +101,10 @@ export default function Home() {
             {step === 3 && (
                 <Result
                     result={result}
+                    inputs = {{
+                        ...employeeInfo,
+                        ...contributionData
+                    }}
                 />
             )}
         </>

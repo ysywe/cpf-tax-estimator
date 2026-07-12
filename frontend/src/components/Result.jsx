@@ -1,8 +1,9 @@
 import { formatCurrency, formatPercent } from "../utils/utils";
 import ResultAccordion from "./ResultAccordion";
 import ContributionSection from "./ContributionSection";
+import InputSummary from "./InputSummary"
 
-export default function Result({result}) {
+export default function Result({ result, inputs }) {
     if (!result) return null;
 
     const { contribution } = result
@@ -12,17 +13,28 @@ export default function Result({result}) {
     const cpf_liable_wage = annual_summary.cpf_liable_wage
     const cpf_liable_bonus = annual_summary.cpf_liable_bonus
     const total_contribution = annual_summary.total_contribution
-
+    
     return (
         <div className="
             mx-auto 
             max-w-5xl 
             space-y-6
-            p-6"
-        >
-            <h1 className="text-center my-15 font-bold text-3xl text-slate-600">Results</h1>
+            p-6
+            sm:max-w-3xl"
+        >   
             <ResultAccordion
                 defaultOpen
+                title="Calculation Summary"
+                subtitle=""
+                amount=""
+                variant="summary"
+            >
+                <InputSummary inputs={inputs} />
+            </ResultAccordion>
+
+            <h1 className="text-center my-15 font-bold text-3xl text-slate-600">Results</h1>
+            
+            <ResultAccordion
                 title="Total CPF contributions"
                 subtitle={`(${formatPercent(total_rate)} x ${formatCurrency(cpf_liable_wage)}) 
                     + (${formatPercent(total_rate)} x ${formatCurrency(cpf_liable_bonus)})`}

@@ -20,11 +20,11 @@ export default function Landing({data, setData, onNext}) {
                 rounded-t-lg
                 bg-white
                 p-6
-                sm:w-3xl sm:p-20
+                sm:w-3xl sm:p-15
                 space-y-8" 
             >
-                <h2 className="font-bold text-2xl">Employee information</h2>
-                <p className="text-sm leading-6 my-4 text-slate-600">
+                <h2 className="font-bold text-2xl text-indigo-800">Employee information</h2>
+                <p className="text-sm leading-6 text-slate-600">
                     Select your residency status and birth month year.
                 </p>
                 <MonthYearPicker
@@ -56,8 +56,7 @@ export default function Landing({data, setData, onNext}) {
                         text-white 
                         font-bold
                         cursor-pointer
-                        hover:bg-indigo-700
-                        transition delay-100 ease-in-out"                     
+                        hover:bg-indigo-700"                     
                 >Next
                 </button>
             </div>

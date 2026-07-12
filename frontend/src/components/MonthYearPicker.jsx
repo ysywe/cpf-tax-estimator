@@ -83,13 +83,18 @@ export default function MonthYearPicker({
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className="
+                className={`
                     flex items-center justify-between
                     w-sm
                     rounded-xl border border-slate-300
                     px-4 
                     py-3
-                    hover:border-sky-300"     
+                    ${
+                        open
+                            ? "ring-1 ring-sky-200"
+                            : "border-slate-300 hover:border-sky-200"
+                    }
+                `}   
             >
                 <span className="font-light text-slate-500">
                     {value
@@ -118,17 +123,16 @@ export default function MonthYearPicker({
                     className="
                         absolute
                         left-0
-                        bottom-13
-                        mt-2
+                        bottom-14
                         z-50
                         w-full
-                        sm:max-w-120
+                        sm:max-w-90
                         rounded-sm
                         border
                         border-sky-200
                         bg-white
                         p-5
-                        shadow-md"                
+                        shadow-sm"                
                 >
                     {/* PICKER HEADER */}
 
@@ -140,52 +144,14 @@ export default function MonthYearPicker({
                                     ? setYear(year - 1)
                                     : setYear(year - 10)
                             }
-                        >
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                fill="none" viewBox="0 0 24 24" 
-                                strokeWidth={2} 
-                                stroke="currentColor" 
-                                className="
-                                    size-5
-                                    text-indigo-800
-                                    hover:text-sky-600
-                                    cursor-pointer"
-                            >
-                                <path 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" 
-                                />
-                            </svg>
-
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={() => setView("year")}
                             className="
-                                rounded-full
-                                px-5
-                                py-1
-                                font-semibold
-                                cursor-pointer
-                                text-indigo-800
-                                hover:bg-slate-100
-                            "
-                        >
-                            {view === "month"
-                                ? year
-                                : `${decadeStart}-${decadeStart + 9}`}
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={() =>
-                                view === "month"
-                                    ? setYear(year + 1)
-                                    : setYear(year + 10)
-                            }
+                            flex
+                            h-9 w-9
+                            items-center 
+                            justify-center
+                            rounded-full bg-slate-100
+                            hover:bg-slate-200
+                            cursor-pointer"
                         >
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
@@ -193,19 +159,64 @@ export default function MonthYearPicker({
                                 viewBox="0 0 24 24" 
                                 strokeWidth={2} 
                                 stroke="currentColor" 
-                                className="
-                                    size-5
-                                    text-indigo-800
-                                    hover:text-sky-600
-                                    cursor-pointer"
+                                className="size-5 text-indigo-800 cursor-pointer"
                             >
                                 <path 
                                     strokeLinecap="round" 
                                     strokeLinejoin="round" 
-                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" 
+                                    d="M15.75 19.5 8.25 12l7.5-7.5" 
                                 />
                             </svg>
-
+                        </button>
+                        
+                        <button
+                            type="button"
+                            onClick={() => setView("year")}
+                            className="
+                                rounded-full
+                              bg-slate-100
+                                px-5
+                                py-1
+                                font-semibold
+                                cursor-pointer
+                                text-indigo-800
+                                hover:bg-slate-200"
+                        >
+                            {view === "month"
+                                ? year
+                                : `${decadeStart}-${decadeStart + 9}`}
+                        </button>
+                        
+                        <button
+                            type="button"
+                            onClick={() =>
+                                view === "month"
+                                    ? setYear(year + 1)
+                                    : setYear(year + 10)
+                            }
+                            className="
+                            flex
+                            h-9 w-9
+                            items-center 
+                            justify-center
+                            rounded-full bg-slate-100
+                            hover:bg-slate-200
+                            cursor-pointer"
+                        >
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                strokeWidth={2} 
+                                stroke="currentColor" 
+                                className="size-5 text-indigo-800 cursor-pointer"
+                            >
+                                <path 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    d="m8.25 4.5 7.5 7.5-7.5 7.5" 
+                                />
+                            </svg>
                         </button>
                     </div>
 
@@ -213,7 +224,7 @@ export default function MonthYearPicker({
 
                     {view === "month" && (
                         <>
-                            <div className="grid grid-cols-3 gap-3">
+                            <div className="grid grid-cols-3 gap-x-2 gap-y-3">
                                 {MONTHS.map((month, index) => {
                                     const active =
                                         year === selectedYear &&
@@ -259,9 +270,9 @@ export default function MonthYearPicker({
                                     xmlns="http://www.w3.org/2000/svg" 
                                     fill="none" 
                                     viewBox="0 0 24 24" 
-                                    strokeWidth={2.5} 
+                                    strokeWidth={2} 
                                     stroke="currentColor" 
-                                    className="size-4"
+                                    className="size-5"
                                 >
                                     <path 
                                         strokeLinecap="round" 
@@ -277,7 +288,7 @@ export default function MonthYearPicker({
 
                     {view === "year" && (
                         <>
-                            <div className="grid grid-cols-3 gap-4">
+                            <div className="grid grid-cols-3 gap-x-2 gap-y-3">
                                 {decadeYears.map((y, index) => {
                                     const outside =
                                         index === 0 || index === 11;
@@ -328,9 +339,9 @@ export default function MonthYearPicker({
                                     xmlns="http://www.w3.org/2000/svg" 
                                     fill="none" 
                                     viewBox="0 0 24 24" 
-                                    strokeWidth={2.5} 
+                                    strokeWidth={2} 
                                     stroke="currentColor" 
-                                    className="size-4"
+                                    className="size-5"
                                 >
                                     <path 
                                         strokeLinecap="round" 

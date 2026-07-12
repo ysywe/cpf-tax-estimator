@@ -17,7 +17,7 @@ export default function CurrencyInput({
                     bg-white
                     px-4 py-3
                     w-sm
-                     hover:border-sky-300"
+                     hover:border-sky-200"
             >
                 <span className="mr-4 text-slate-500 select-none">
                     SGD
