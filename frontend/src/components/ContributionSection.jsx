@@ -1,9 +1,23 @@
-export default function ContributionSection() {
+import { formatCurrency, formatPercent } from "../utils/utils";
+
+export default function ContributionSection({result}) {
+
+    const { contribution } = result
+    const { annual_summary, cpf_rates } = contribution
+
+    const employee_rate = cpf_rates.employee_rate
+    const employer_rate = cpf_rates.employer_rate
+    const employee_share = annual_summary.employee_share
+    const employer_share = annual_summary.employer_share
+    const cpf_liable_wage = annual_summary.cpf_liable_wage
+    const cpf_liable_bonus = annual_summary.cpf_liable_bonus
+    const total_contribution = annual_summary.total_contribution
+
     return (
         <div className="border-slate-200 bg-white">
             <h3 className="
                 bg-slate-100
-                mb-3 
+                mb-5 
                 px-2
                 py-3
                 rounded-lg
@@ -12,7 +26,7 @@ export default function ContributionSection() {
             </h3>
 
             <div className="
-                border border-slate-200
+                border border-slate-300
                 rounded-lg
                 space-y-5 
                 p-6"
@@ -31,7 +45,8 @@ export default function ContributionSection() {
                         </p>
 
                         <p className="mt-1  text-slate-600">
-                            (20% x $8,000.00) + (20% x $213,123.00)
+                            {`(${formatPercent(employer_rate)} x ${formatCurrency(cpf_liable_wage)}) 
+                                + (${formatPercent(employee_rate)} x ${formatCurrency(cpf_liable_bonus)})`}
                         </p>
                     </div>
 
@@ -40,7 +55,7 @@ export default function ContributionSection() {
                         text-end
                         text-2xl 
                         text-slate-700"
-                    >$1,600.00
+                    >{`${formatCurrency(employee_share)}`}
                     </span>
                 </div>
 
@@ -59,7 +74,7 @@ export default function ContributionSection() {
                         </p>
 
                         <p className="mt-1 text-slate-600">
-                            ($81,816.00 - $44,224.00)
+                            {`(${formatCurrency(total_contribution)} - ${formatCurrency(employee_share)})`}
                         </p>
                     </div>
 
@@ -68,12 +83,12 @@ export default function ContributionSection() {
                         text-end
                         text-2xl 
                         text-slate-700"
-                    >$1,360.00
+                    >{`${formatCurrency(employer_share)}`}
                     </span>
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    <p className="text-slate-600">
+                    <p className="font-medium">
                         Total CPF Contributions
                     </p>
                     <p className="
@@ -81,7 +96,7 @@ export default function ContributionSection() {
                         text-2xl 
                         font-semibold
                         text-slate-700"
-                    >$2,960.00
+                    >{`${formatCurrency(total_contribution)}`}
                     </p>
                 </div>
             </div>

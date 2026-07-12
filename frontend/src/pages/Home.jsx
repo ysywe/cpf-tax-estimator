@@ -3,7 +3,7 @@ import { useState } from "react";
 import { fetchEstimate } from "../client"
 import Landing from "../components/Landing";
 import ContributionForm from "../components/ContributionForm";
-import FormResult from "../components/FormResult"
+import Result from "../components/Result"
 
 export default function Home() {
     const [step, setStep] = useState(1);
@@ -64,7 +64,11 @@ export default function Home() {
 
             const response = await fetchEstimate(payload);
 
-            setResult(response);
+            setResult({
+                contribution: response.CPFBreakdownResponse.contribution_data,
+                allocation: response.CPFBreakdownResponse.allocation_data,
+                tax: response.TaxBreakdownResponse
+            });
             setStep(3);
         } catch (err) {
             setError(err.message || "Calculation failed.");
@@ -95,8 +99,8 @@ export default function Home() {
             )}
 
             {step === 3 && (
-                <FormResult
-                    
+                <Result
+                    result={result}
                 />
             )}
         </>

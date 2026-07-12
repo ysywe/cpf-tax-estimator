@@ -10,7 +10,12 @@ export default function ResultAccordion({
     const [open, setOpen] = useState(defaultOpen);
 
     return (
-        <section className="overflow-hidden bg-white shadow-sm">
+        <section className="
+            overflow-hidden 
+            bg-white 
+            shadow-sm 
+            rounded-lg"
+        >
             <button
                 type="button"
                 onClick={() => setOpen(!open)}
@@ -22,7 +27,9 @@ export default function ResultAccordion({
                     px-6
                     py-4
                     transition
-                    cursor-pointer"
+                    cursor-pointer
+                    hover:bg-slate-50
+                    sm:flex-row sm:justify-between"
             >
                 <div>
                     <h2 className="font-bold text-slate-900">
@@ -36,15 +43,19 @@ export default function ResultAccordion({
                     )}
                 </div>
 
-                <div className="flex items-center gap-2 justify-end">
+                <div className="
+                    flex items-center 
+                    gap-2 
+                    justify-end"
+                >
                     <span className="text-2xl font-semibold text-slate-700">
-                        ${amount}
+                        {amount}
                     </span>
 
                     <div
                         className={`
                             flex 
-                            h-10 w-10 
+                            h-12 w-12
                             items-center 
                             justify-center
                             rounded-full bg-slate-100
@@ -55,19 +66,17 @@ export default function ResultAccordion({
                     >
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            strokeWidth={2} 
+                            fill="none" viewBox="0 0 24 24" 
+                            strokeWidth={2.5} 
                             stroke="currentColor" 
                             className="size-5 text-indigo-800"
                         >
                             <path 
                                 strokeLinecap="round" 
                                 strokeLinejoin="round" 
-                                d="m4.5 15.75 7.5-7.5 7.5 7.5" 
+                                d="m19.5 8.25-7.5 7.5-7.5-7.5" 
                             />
                         </svg>
-
                     </div>
                 </div>
             </button>

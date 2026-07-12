@@ -21,9 +21,9 @@ async def calculate_cpf_contribution(
     ow_ceiling, aw_ceiling = wage_ceiling_data.ow_ceiling, wage_ceiling_data.aw_ceiling
 
     capped_ow = min(monthly_income, ow_ceiling) 
-    total_annual_ow = capped_ow * 12
+    capped_annual_ow = capped_ow * 12
 
-    add_wage_ceiling = aw_ceiling - total_annual_ow
+    add_wage_ceiling = aw_ceiling - capped_annual_ow
     capped_add_wage = min(additional_income, add_wage_ceiling)
 
     employer_rate, employee_rate = contrib_record.employer_rate, contrib_record.employee_rate
@@ -36,11 +36,11 @@ async def calculate_cpf_contribution(
 
     # Anuual contribution share
     annual_total_contrib = (
-        (total_annual_ow * total_rate).quantize(Decimal("1."), rounding=ROUND_HALF_UP) +
+        (capped_annual_ow * total_rate).quantize(Decimal("1."), rounding=ROUND_HALF_UP) +
         (capped_add_wage * total_rate).quantize(Decimal("1."), rounding=ROUND_HALF_UP)
     )
     annual_employee_share = (
-        (total_annual_ow * employee_rate).quantize(Decimal("1."), rounding=ROUND_DOWN) +
+        (capped_annual_ow * employee_rate).quantize(Decimal("1."), rounding=ROUND_DOWN) +
         (capped_add_wage * employee_rate).quantize(Decimal("1."), rounding=ROUND_DOWN)
     )
     annual_employer_share  = annual_total_contrib - annual_employee_share
@@ -58,11 +58,13 @@ async def calculate_cpf_contribution(
             "employee_share": annual_employee_share,
             "employer_share": annual_employer_share,
             "total_contribution": annual_total_contrib,
+            "cpf_liable_wage": capped_annual_ow,
             "cpf_liable_bonus": capped_add_wage
         },
         "cpf_rates": {
             "employee_rate": employee_rate,
-            "employer_rate": employer_rate
+            "employer_rate": employer_rate,
+            "total_rate": employee_rate + employer_rate
         }
     }
 

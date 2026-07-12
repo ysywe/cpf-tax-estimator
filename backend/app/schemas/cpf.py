@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 
 class MonthlySummary(BaseModel):
     employee_share: Decimal = Field(ge=0, description="Monthly employee CPF contribution")
@@ -12,11 +12,13 @@ class AnnualSummary(BaseModel):
     employee_share: Decimal = Field(ge=0, description="Annual employee CPF contribution")
     employer_share: Decimal = Field(ge=0, description="Annual employer CPF contribution")
     total_contribution: Decimal = Field(ge=0, description="Total annual CPF contribution")
+    cpf_liable_wage: Decimal = Field(ge=0, description="Annual ordinary wage amount capped by additonal wage ceiling")
     cpf_liable_bonus: Decimal = Field(description="Additional wage amount capped by additonal wage ceiling")
 
 class CPFRates(BaseModel):
     employee_rate: Decimal = Field(ge=0, description="Employee CPF contribution rate")
     employer_rate: Decimal = Field(ge=0, description="Employer CPF contribution rate")
+    total_rate: Decimal = Field(ge=0, description="Sum of employee and employer CPF contribution rate")
 
 class ContributionWrapper(BaseModel):
     monthly_summary: MonthlySummary
