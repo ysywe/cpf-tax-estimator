@@ -1,7 +1,8 @@
 import { formatCurrency, formatPercent } from "../utils/utils";
 import ResultAccordion from "./ResultAccordion";
 import ContributionSection from "./ContributionSection";
-import InputSummary from "./InputSummary"
+import AllocationSection from "./AllocationSection";
+import InputSummary from "./InputSummary";
 
 export default function Result({ result, inputs }) {
     if (!result) return null;
@@ -51,7 +52,9 @@ export default function Result({ result, inputs }) {
                 amount="2,960.00"
             >
                 <div className="rounded-xl border border-slate-200 bg-white p-6">
-                    Allocation placeholder
+                    <AllocationSection
+                        result={result}
+                    />
                 </div>
             </ResultAccordion>
 

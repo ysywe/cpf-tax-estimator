@@ -12,12 +12,13 @@ export default function InputSummary({ inputs }) {
     return (
         <div className="border-slate-200 bg-white">
             <h3 className="
-                bg-stone-100
+                bg-stone-50
                 mb-5 
                 px-4
                 py-3
                 rounded-lg
-                font-bold"
+                font-semibold
+                text-slate-900"
             >Based on your input
             </h3>
             <div className="

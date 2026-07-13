@@ -16,12 +16,13 @@ export default function ContributionSection({result}) {
     return (
         <div className="border-slate-200 bg-white">
             <h3 className="
-                bg-stone-100
+                bg-stone-50
                 mb-5 
-                px-2
+                px-4
                 py-3
                 rounded-lg
-                font-bold"
+                text-slate-900
+                font-semibold"
             >Share of CPF Contributions
             </h3>
 
@@ -95,7 +96,7 @@ export default function ContributionSection({result}) {
                         text-end 
                         text-2xl 
                         font-semibold
-                        text-slate-700"
+                        text-slate-800"
                     >{`${formatCurrency(total_contribution)}`}
                     </p>
                 </div>
