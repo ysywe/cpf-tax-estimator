@@ -22,7 +22,7 @@ export default function Result({ result, inputs }) {
             mx-auto 
             max-w-5xl 
             space-y-6
-            p-6
+            p-8
             sm:max-w-3xl"
         >   
             <ResultAccordion
@@ -35,12 +35,18 @@ export default function Result({ result, inputs }) {
                 <InputSummary inputs={inputs} />
             </ResultAccordion>
 
-            <h1 className="text-center my-10 font-bold text-3xl text-slate-600">Results</h1>
+            <h1 className="
+                text-center 
+                mt-25 mb-8
+                font-bold 
+                text-3xl 
+                text-slate-600"
+            >Results
+            </h1>
             
             <ResultAccordion
                 title="Total CPF contributions"
-                subtitle={`(${formatPercent(total_rate)} x ${formatCurrency(cpf_liable_wage)}) 
-                    + (${formatPercent(total_rate)} x ${formatCurrency(cpf_liable_bonus)})`}
+                subtitle="Employee and Employer CPF contribution"
                 amount={`${formatCurrency(total_contribution)}`}
             >
                 <ContributionSection 

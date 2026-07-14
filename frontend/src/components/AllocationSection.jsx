@@ -47,11 +47,11 @@ export default function AllocationSection({result}) {
                 hidden 
                 sm:grid 
                 grid-cols-[2fr_1fr_1.2fr]
-                bg-stone-50
+                bg-slate-100
                 rounded-md
                 px-6 py-3 
-                font-semibold
-                text-slate-900"
+                font-medium
+                text-slate-800"
             >
                 <span>Account</span>
                 <span className="text-right">Rate</span>
@@ -71,12 +71,15 @@ export default function AllocationSection({result}) {
                         sm:px-6 sm:py-5"
                 >
                     <h4 className="
-                        font-semibold
+                        font-medium
                         bg-slate-50
                         px-4 py-2
                         rounded-md
-                        text-slate-900
-                        sm:bg-white sm:p-0 sm:font-medium"
+                        text-slate-800
+                        sm:bg-white 
+                        sm:p-0 
+                        sm:text-slate-700
+                        sm:font-normal"
                     >{row.name}
                     </h4>
 
@@ -88,7 +91,7 @@ export default function AllocationSection({result}) {
                     >
                         <span className="
                             sm:hidden 
-                            text-slate-500 
+                            text-slate-600 
                             text-sm 
                             font-medium"
                         >Rate
@@ -105,7 +108,7 @@ export default function AllocationSection({result}) {
                     >
                         <span className="
                             sm:hidden 
-                            text-slate-500 
+                            text-slate-600 
                             text-sm 
                             font-medium"
                         >Amount

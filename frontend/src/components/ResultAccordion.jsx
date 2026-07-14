@@ -12,11 +12,13 @@ export default function ResultAccordion({
 
     const variants = {
         default: {
+            section: "w-full",
             button: "flex flex-col",
-            title: "justify-self-auto"
+            title: "justify-self-auto",
         },
 
         summary: {
+            section: "max-w-90",
             button: "flex items-center",
         },
     };
@@ -24,11 +26,13 @@ export default function ResultAccordion({
     const style = variants[variant];
 
     return (
-        <section className="
+        <section className={`
+            mx-auto
+            ${style.section}
             overflow-hidden 
             bg-white 
             shadow-sm 
-            rounded-lg"
+            rounded-lg`}
         >
             <button
                 type="button"
@@ -73,7 +77,8 @@ export default function ResultAccordion({
                             h-12 w-12
                             items-center 
                             justify-center
-                            rounded-full bg-slate-100
+                            rounded-full 
+                            bg-slate-100
                             hover:bg-indigo-200
                             transition-transform
                             ${open ? "rotate-180" : ""}

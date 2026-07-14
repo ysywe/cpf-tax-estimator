@@ -16,94 +16,114 @@ export default function ContributionSection({result}) {
     return (
         <div className="
             overflow-hidden
-            border-stone-200
             bg-white 
             rounded-md"
         >
             <h3 className="
-                bg-stone-50
+                bg-slate-100
                 mb-5 
                 px-4
                 py-3
                 rounded-md
-                text-slate-900
-                font-semibold"
+                text-slate-800
+                font-medium"
             >Share of CPF Contributions
             </h3>
 
             <div className="
                 border border-stone-200
                 rounded-md
-                space-y-5 
+                space-y-5
                 p-6"
             >
                 <div className="
                     flex flex-col 
-                    items-start 
-                    justify-between 
-                    gap-4
-                    border-b border-slate-200 
-                    pb-5"
+                    gap-3
+                    w-full"
                 >
-                    <div>
-                        <p className="font-medium">
-                            Employee's Share
-                        </p>
-
-                        <p className="mt-1 text-slate-600">
-                            {`(${formatPercent(employer_rate)} x ${formatCurrency(cpf_liable_wage)}) 
-                                + (${formatPercent(employee_rate)} x ${formatCurrency(cpf_liable_bonus)})`}
-                        </p>
+                    <h4 className="
+                        font-medium
+                        bg-slate-50
+                        px-4 py-2
+                        rounded-md
+                        text-slate-900"
+                    >Employee's Share
+                    </h4>
+                    <div className="flex justify-between">
+                        <span className="text-slate-600">Annual Ordinary Wages</span>
+                        <span className="
+                            text-slate-700
+                            font-medium"
+                        >{`${formatCurrency(cpf_liable_wage)}`}
+                        </span>
                     </div>
 
-                    <span className="
-                        w-full 
-                        text-end
-                        text-2xl 
+                    <div className="
+                        flex justify-between
+                        pb-5
+                        border-b border-slate-200"
+                    >
+                        <span className="text-slate-600">Annual Additional Wages</span>
+                        <span className="
+                            text-slate-700
+                            font-medium"
+                        >{`${formatCurrency(cpf_liable_bonus)}`}
+                        </span>
+                    </div>
+
+                    <div className="
+                        flex justify-between 
+                        font-bold
                         text-slate-700"
-                    >{`${formatCurrency(employee_share)}`}
-                    </span>
+                    >
+                        <span>{`Employee's Share @ ${formatPercent(employee_rate)}`}</span>
+                        <span>{`${formatCurrency(employee_share)}`}</span>
+                    </div>
                 </div>
 
                 <div className="
-                    flex 
-                    flex-col 
-                    items-start 
-                    justify-between
-                    gap-4 
-                    border-b border-slate-200 
-                    pb-5"
+                    flex flex-col 
+                    gap-4"
                 >
-                    <div>
-                        <p className="font-medium">
-                            Employer's Share
-                        </p>
+                    <h4 className="
+                        font-medium
+                        bg-slate-50
+                        px-4 py-2
+                        rounded-md
+                        text-slate-900"
+                    >Employer's Share
+                    </h4>
 
-                        <p className="mt-1 text-slate-600">
-                            {`(${formatCurrency(total_contribution)} - ${formatCurrency(employee_share)})`}
-                        </p>
+                    <div className="flex justify-between">
+                        <span className="text-slate-600">Total Contribution -</span>
+                        <span className="
+                            text-slate-700
+                            font-medium"
+                        >{`${formatCurrency(total_contribution)}`}
+                        </span>
                     </div>
 
-                    <span className="
-                        w-full 
-                        text-end
-                        text-2xl 
-                        text-slate-700"
-                    >{`${formatCurrency(employer_share)}`}
-                    </span>
-                </div>
+                    <div className="
+                        flex justify-between
+                        pb-5
+                        border-b border-slate-200"
+                    >
+                        <span className="text-slate-600">Employee's Share</span>
+                        <span className="
+                            text-slate-700
+                            font-medium"
+                        >{`${formatCurrency(employee_share)}`}
+                        </span>
+                    </div>
 
-                <div className="flex flex-col gap-4">
-                    <p className="font-medium">
-                        Total CPF Contributions
-                    </p>
-                    <p className="
-                        text-end 
-                        text-2xl 
-                        font-semibold
-                        text-slate-800"
-                    >{`${formatCurrency(total_contribution)}`}
-                    </p>
+                    <div className="
+                        flex justify-between 
+                        font-bold
+                        text-slate-700"
+                    >
+                        <span>Employer's Share</span>
+                        <span>{`${formatCurrency(employer_share)}`}</span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -27,10 +27,10 @@ export default function TaxSection({result}) {
             <div className="
                 flex flex-col 
                 gap-3
-                pb-5"
+                pb-8"
             >
                 <h4 className="
-                    font-semibold
+                    font-medium
                     bg-slate-50
                     px-4 py-2
                     rounded-md
@@ -38,8 +38,12 @@ export default function TaxSection({result}) {
                 >Chargeable Income
                 </h4>
                 <div className="flex justify-between">
-                    <p className="text-slate-600">Gross Income</p>
-                    <p className="">{`${formatCurrency(gross_income)}`}</p>
+                    <span className="text-slate-600">Gross Income -</span>
+                    <span className="
+                        text-slate-700
+                        font-medium"
+                    >{`${formatCurrency(gross_income)}`}
+                    </span>
                 </div>
 
                 <div className="
@@ -47,13 +51,21 @@ export default function TaxSection({result}) {
                     pb-5
                     border-b border-slate-200"
                 >
-                    <span className="text-slate-600">- CPF Relief</span >
-                    <span className="">{`${formatCurrency(annual_cpf_relief)}`}</span >
+                    <span className="text-slate-600">CPF Relief</span >
+                    <span className="
+                        text-slate-700
+                        font-medium"
+                    >{`${formatCurrency(annual_cpf_relief)}`}
+                    </span >
                 </div>
 
-                <div className="flex justify-between">
-                    <span className="text-slate-800 font-medium">Chargeable Income</span>
-                    <span className="">{`${formatCurrency(chargeable_income)}`}</span>
+                <div className="
+                    flex justify-between 
+                    font-bold
+                    text-slate-700"
+                >
+                    <span>Chargeable Income</span>
+                    <span>{`${formatCurrency(chargeable_income)}`}</span>
                 </div>
             </div>
 
@@ -62,7 +74,7 @@ export default function TaxSection({result}) {
                 gap-4"
             >
                 <h4 className="
-                    font-semibold
+                    font-medium
                     bg-slate-50
                     px-4 py-2
                     rounded-md
@@ -73,7 +85,11 @@ export default function TaxSection({result}) {
                     <span className="text-slate-600">{`First ${formatCurrency(min_income)} 
                         @ ${formatPercent(tax_rate)}`}
                     </span>
-                    <span className="">{`${formatCurrency(tax_payable)}`}</span>
+                    <span className="
+                        text-slate-700 
+                        font-medium"
+                    >{`${formatCurrency(tax_payable)}`}
+                    </span>
                 </div>
 
                 <div className="
@@ -84,11 +100,15 @@ export default function TaxSection({result}) {
                     <span className="text-slate-600">{`Excess ${formatCurrency(excess_income)} 
                         @ ${formatPercent(tax_rate)}`}
                     </span>
-                    <span className="">{`${formatCurrency(excess_tax)}`}</span>
+                    <span className="
+                        text-slate-700 
+                        font-medium"
+                    >{`${formatCurrency(excess_tax)}`}
+                    </span>
                 </div>
 
                 <div className="
-                    font-semibold
+                    font-bold
                     text-slate-800 
                     px-6 py-4
                     bg-slate-50
