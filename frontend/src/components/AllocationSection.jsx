@@ -37,12 +37,18 @@ export default function AllocationSection({result}) {
     );
 
     return (
-        <div className="rounded-lg overflow-hidden">
+        <div className="
+            rounded-md
+            overflow-hidden 
+            border border-stone-200 
+            p-6"
+        >
             <h3 className="
                 hidden 
                 sm:grid 
                 grid-cols-[2fr_1fr_1.2fr]
                 bg-stone-50
+                rounded-md
                 px-6 py-3 
                 font-semibold
                 text-slate-900"
@@ -64,22 +70,26 @@ export default function AllocationSection({result}) {
                         sm:items-center
                         sm:px-6 sm:py-5"
                 >
-                    <h3 className="
+                    <h4 className="
                         font-semibold
                         bg-slate-50
                         px-4 py-2
-                        rounded-lg
+                        rounded-md
                         text-slate-900
                         sm:bg-white sm:p-0 sm:font-medium"
                     >{row.name}
-                    </h3>
+                    </h4>
 
-                    <div className="flex justify-between sm:block sm:text-right">
+                    <div className="
+                        flex 
+                        justify-between 
+                        sm:block sm:text-right
+                        ml-6"
+                    >
                         <span className="
                             sm:hidden 
                             text-slate-500 
                             text-sm 
-                            ml-3
                             font-medium"
                         >Rate
                         </span>
@@ -87,12 +97,16 @@ export default function AllocationSection({result}) {
                         <span className="text-slate-800">{formatPercent(row.rate)}</span>
                     </div>
 
-                    <div className="flex justify-between sm:block sm:text-right">
+                    <div className="
+                        flex 
+                        justify-between 
+                        sm:block sm:text-right
+                        ml-6"
+                    >
                         <span className="
                             sm:hidden 
                             text-slate-500 
                             text-sm 
-                            ml-3
                             font-medium"
                         >Amount
                         </span>
@@ -106,17 +120,18 @@ export default function AllocationSection({result}) {
                 className="
                     grid
                     bg-slate-50
-                    px-6
-                    py-4
+                    px-6 py-4
+                    font-semibold
+                    rounded-md
                     sm:grid-cols-[2fr_1fr_1.2fr]"
             >
-                <span className="font-medium">Total</span>
+                <span className="text-slate-900">Total</span>
 
-                <span className="text-right font-semibold text-slate-800">
+                <span className="text-right text-slate-800">
                     {formatPercent(total_rate)}
                 </span>
 
-                <span className="text-right font-semibold text-slate-800">
+                <span className="text-right text-slate-800">
                     {formatCurrency(total_amt)}
                 </span>
             </div>

@@ -35,7 +35,6 @@ export default function ResultAccordion({
                 onClick={() => setOpen(!open)}
                 className={`
                     ${style.button}
-                    gap-6
                     w-full
                     text-left
                     px-7
@@ -44,6 +43,7 @@ export default function ResultAccordion({
                     cursor-pointer
                     hover:bg-neutral-50
                     justify-between
+                    gap-3
                     sm:flex-row`}
             >
                 <div>

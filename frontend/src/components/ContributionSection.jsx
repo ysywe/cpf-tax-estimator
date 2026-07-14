@@ -14,13 +14,18 @@ export default function ContributionSection({result}) {
     const total_contribution = annual_summary.total_contribution
 
     return (
-        <div className="border-slate-200 bg-white">
+        <div className="
+            overflow-hidden
+            border-stone-200
+            bg-white 
+            rounded-md"
+        >
             <h3 className="
                 bg-stone-50
                 mb-5 
                 px-4
                 py-3
-                rounded-lg
+                rounded-md
                 text-slate-900
                 font-semibold"
             >Share of CPF Contributions
@@ -28,7 +33,7 @@ export default function ContributionSection({result}) {
 
             <div className="
                 border border-stone-200
-                rounded-lg
+                rounded-md
                 space-y-5 
                 p-6"
             >

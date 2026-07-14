@@ -2,13 +2,15 @@ import { formatCurrency, formatPercent } from "../utils/utils";
 import ResultAccordion from "./ResultAccordion";
 import ContributionSection from "./ContributionSection";
 import AllocationSection from "./AllocationSection";
+import TaxSection from "./TaxSection";
 import InputSummary from "./InputSummary";
 
 export default function Result({ result, inputs }) {
     if (!result) return null;
 
-    const { contribution } = result
+    const { contribution, tax } = result
     const { annual_summary, cpf_rates } = contribution
+    const { total_tax_payable } = tax
 
     const total_rate = cpf_rates.total_rate
     const cpf_liable_wage = annual_summary.cpf_liable_wage
@@ -33,7 +35,7 @@ export default function Result({ result, inputs }) {
                 <InputSummary inputs={inputs} />
             </ResultAccordion>
 
-            <h1 className="text-center my-15 font-bold text-3xl text-slate-600">Results</h1>
+            <h1 className="text-center my-10 font-bold text-3xl text-slate-600">Results</h1>
             
             <ResultAccordion
                 title="Total CPF contributions"
@@ -49,23 +51,21 @@ export default function Result({ result, inputs }) {
             <ResultAccordion
                 title="CPF Allocation"
                 subtitle="Allocation into OA, SA, MA and RA"
-                amount="2,960.00"
+                amount={`${formatCurrency(total_contribution)}`}
             >
-                <div className="rounded-xl border border-slate-200 bg-white p-6">
-                    <AllocationSection
-                        result={result}
-                    />
-                </div>
+                <AllocationSection
+                    result={result}
+                />
             </ResultAccordion>
 
             <ResultAccordion
                 title="Income Tax"
                 subtitle="Estimated tax payable"
-                amount="780.00"
-            >
-                <div className="rounded-xl border border-slate-200 bg-white p-6">
-                    Tax placeholder
-                </div>
+                amount={`${formatCurrency(total_tax_payable)}`}
+            >  
+                <TaxSection
+                    result={result}
+                />
             </ResultAccordion>
 
         </div>
