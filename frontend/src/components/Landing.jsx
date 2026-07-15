@@ -2,7 +2,7 @@ import MonthYearPicker from "./MonthYearPicker";
 
 export default function Landing({data, setData, onNext}) {
     return (
-        <div className="mx-auto pt-15">
+        <div className="mx-auto pt-15 mb-20">
             {/* Header */}
             <div className="text-xl text-center font-bold mb-20">
                 <h2>A tool for employers and employees to estimate your CPF and personal income tax.</h2>

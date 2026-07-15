@@ -1,6 +1,6 @@
 import { formatCurrency, formatMonthYear } from "../utils/utils"
 
-export default function InputSummary({ inputs }) {
+export default function InputSummary({ inputs, result }) {
     if (!inputs) return null;
     const {
         birthMonthYear,
@@ -8,6 +8,8 @@ export default function InputSummary({ inputs }) {
         ordinaryWages,
         additionalWages
     } = inputs;
+
+    const { contribution } = result
 
     const rows = [
         { 
@@ -20,7 +22,7 @@ export default function InputSummary({ inputs }) {
         },
         { 
             name: "Age group", 
-            value: "Placeholder" 
+            value: contribution.age_group 
         },
         { 
             name: "Ordinary wages", 

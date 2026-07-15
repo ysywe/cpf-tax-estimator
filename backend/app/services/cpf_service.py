@@ -65,7 +65,8 @@ async def calculate_cpf_contribution(
             "employee_rate": employee_rate,
             "employer_rate": employer_rate,
             "total_rate": employee_rate + employer_rate
-        }
+        },
+        "age_group": age_grp
     }
 
 async def calculate_cpf_allocation(

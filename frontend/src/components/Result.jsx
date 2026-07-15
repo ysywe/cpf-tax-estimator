@@ -32,7 +32,10 @@ export default function Result({ result, inputs }) {
                 amount=""
                 variant="summary"
             >
-                <InputSummary inputs={inputs} />
+                <InputSummary 
+                    inputs={inputs} 
+                    result={result}
+                />
             </ResultAccordion>
 
             <h1 className="
@@ -56,7 +59,7 @@ export default function Result({ result, inputs }) {
 
             <ResultAccordion
                 title="CPF Allocation"
-                subtitle="Allocation into OA, SA, MA and RA"
+                subtitle="Allocation of CPF accounts"
                 amount=""
             >
                 <AllocationSection

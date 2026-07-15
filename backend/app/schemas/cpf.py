@@ -24,6 +24,7 @@ class ContributionWrapper(BaseModel):
     monthly_summary: MonthlySummary
     annual_summary: AnnualSummary
     cpf_rates: CPFRates
+    age_group: str = Field(description="Employee's CPF age group in years")
 
 class BaseAccount(BaseModel):
     amount: Decimal = Field(description="Amount in allocation account")

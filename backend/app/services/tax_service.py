@@ -46,6 +46,6 @@ async def get_tax_breakdown(
         "excess_tax": excess_tax,
         "tax_payable": tax_bracket.tax_payable,
         "total_tax_payable": total_tax_payable,
-        "effective_tax_rate": ((total_tax_payable / chargeable_income) * 100)
+        "effective_tax_rate": total_tax_payable / chargeable_income
         .quantize(Decimal("0.01")) if chargeable_income > 0 else Decimal("0.0")
     }
