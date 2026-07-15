@@ -37,7 +37,7 @@ export default function Result({ result, inputs }) {
 
             <h1 className="
                 text-center 
-                mt-25 mb-8
+                mt-20 mb-5
                 font-bold 
                 text-3xl 
                 text-slate-600"
@@ -57,7 +57,7 @@ export default function Result({ result, inputs }) {
             <ResultAccordion
                 title="CPF Allocation"
                 subtitle="Allocation into OA, SA, MA and RA"
-                amount={`${formatCurrency(total_contribution)}`}
+                amount=""
             >
                 <AllocationSection
                     result={result}

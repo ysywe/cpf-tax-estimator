@@ -13,3 +13,8 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   appearance: textfield;
 }
+
+.recharts-sector:focus, .recharts-surface:focus {
+  outline: none;
+}
+

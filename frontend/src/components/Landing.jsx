@@ -2,9 +2,9 @@ import MonthYearPicker from "./MonthYearPicker";
 
 export default function Landing({data, setData, onNext}) {
     return (
-        <div className="mx-auto pt-10 pb-20">
+        <div className="mx-auto pt-15">
             {/* Header */}
-            <div className="text-xl text-center font-bold mb-12">
+            <div className="text-xl text-center font-bold mb-20">
                 <h2>A tool for employers and employees to estimate your CPF and personal income tax.</h2>
                 <p className="text-sm leading-6 mt-2 text-slate-600">
                     Use this to estimate your monthly and annual CPF contributions and allocations as well as tax payable.
