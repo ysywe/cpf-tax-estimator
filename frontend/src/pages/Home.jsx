@@ -21,7 +21,6 @@ export default function Home() {
 
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
 
     const calculateAge = (birthMonthYear, contributionMonthYear) => {
         const birthDate = new Date(`${birthMonthYear}-01`);
@@ -36,17 +35,7 @@ export default function Home() {
     }
   
     const handleCalculation = async () => {
-        if (
-            !employeeInfo.birthMonthYear ||
-            !contributionData.contributionMonthYear ||
-            contributionData.ordinaryWages === "" ||
-            contributionData.additionalWages === ""
-        ) {
-            setError("Please complete all fields.");
-            return;
-        }
         setLoading(true);
-        setError("");
 
         try {
             // Calculate age based on contribution month
@@ -71,7 +60,7 @@ export default function Home() {
             });
             setStep(3);
         } catch (err) {
-            setError(err.message || "Calculation failed.");
+            console.log(err)
         } finally {
             setLoading(false);
         }
@@ -91,10 +80,10 @@ export default function Home() {
                 <ContributionForm
                     data={contributionData}
                     setData={setContributionData}
+                    birthMonthYear={employeeInfo.birthMonthYear}
                     onBack={() => setStep(1)}
                     onSubmit={handleCalculation}
                     loading={loading}
-                    error={error}
                 />
             )}
 

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { formatMonthYear } from "../utils/utils";
 
 const MONTHS = [
     "Jan", "Feb", "Mar",
@@ -11,6 +12,7 @@ export default function MonthYearPicker({
     label,
     value,
     onChange,
+    error,
 }) {
     const today = new Date();
 
@@ -74,32 +76,43 @@ export default function MonthYearPicker({
         decadeYears.push(decadeStart + i);
     }
 
+    const showError = !!error && !open;
+
     return (
         <div ref={ref} className="relative">
-            <label className="mb-2 block">
+            <label className="mb-2 block font-light">
                 {label}
             </label>
 
             <button
                 type="button"
-                onClick={() => setOpen((o) => !o)}
+                onClick={() => setOpen(true)}
                 className={`
                     flex items-center justify-between
                     w-sm
-                    rounded-xl border border-slate-300
+                    rounded-lg border border-slate-300
                     px-4 
                     py-3
                     ${
-                        open
-                            ? "ring-1 ring-sky-200"
-                            : "border-slate-300 hover:border-sky-200"
+                        showError
+                            ? "border-red-500 ring-1 ring-red-500"
+                            : open
+                                ? "border-sky-500 ring-1 ring-sky-500"
+                                : "border-slate-300 hover:border-sky-300"
                     }
                 `}   
             >
-                <span className="font-light text-slate-500">
+                <span 
+                    className={
+                        value
+                            ? "font-medium text-slate-800"
+                            : "font-light text-slate-500"
+                    }
+                    >
                     {value
                         ? `${String(selectedMonth).padStart(2, "0")}/${selectedYear}`
-                        : "MM/YYYY"}
+                        : "MM/YYYY"    
+                    }
                 </span>
 
                 <svg
@@ -117,6 +130,33 @@ export default function MonthYearPicker({
                     />
                 </svg>
             </button>
+
+            {showError && (
+                <div className="
+                    mt-2
+                    w-sm
+                    text-sm
+                    flex items-center
+                    gap-1
+                    text-red-600
+                    italic"
+                >
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        strokeWidth={1.5} 
+                        stroke="currentColor" 
+                        className="size-6 shrink-0"
+                    >
+                        <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                    </svg>
+                    <span>{error}</span>
+                </div>
+            )}
 
             {open && (
                 <div
