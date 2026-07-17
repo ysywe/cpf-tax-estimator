@@ -1,4 +1,5 @@
 import json
+import csv
 import httpx
 import asyncio
 
@@ -16,6 +17,8 @@ from app.database import SessionLocal, create_tables
 
 APP_FOLDER = Path(__file__).resolve().parent.parent
 SEED_DATA = APP_FOLDER / "seed_data"
+
+URL = "https://data.gov.sg/api/action/datastore_search"
 
 async def load_wage_ceiling(db: AsyncSession) -> None:
     file = SEED_DATA / "wage_ceilings.json"
@@ -54,15 +57,32 @@ async def load_tax_rate(db: AsyncSession) -> None:
             )
     await db.commit()
 
-async def load_cpf_contribution(db: AsyncSession) -> None:
-    url = "https://data.gov.sg/api/action/datastore_search"
+async def load_pr_cpf_contribution(db: AsyncSession) -> None:
+    file = SEED_DATA / "pr_cpf_rates.csv"
+
+    with file.open("r", encoding="utf-8-sig", newline="") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            db.add(
+                CPFContribution(
+                    effective_from=parse_effective_date(row["effective_from"]),
+                    citizenship=row["citizenship"],
+                    age_grp=row["age_group"],
+                    employer_rate=Decimal(row["employer_rate"]) / Decimal("100.0"),
+                    employee_rate=Decimal(row["employee_rate"]) / Decimal("100.0")
+                )
+            )
+    await db.commit()
+
+async def load_sc_cpf_contribution(db: AsyncSession) -> None:
     query_params = {
         "resource_id": "d_98ffa142ae0dec40391f78f81d26aca9",
         "limit": 1000
     }
 
     async with httpx.AsyncClient() as client:
-        response = await client.get(url, params=query_params)
+        response = await client.get(URL, params=query_params)
         response.raise_for_status()
         response_data = response.json()
 
@@ -89,6 +109,7 @@ async def load_cpf_contribution(db: AsyncSession) -> None:
             db.add(
                 CPFContribution(
                     effective_from=effec_from,
+                    citizenship="SC",
                     age_grp=age_grp,
                     employer_rate=rates["Employer"],
                     employee_rate=rates["Employee"]
@@ -97,14 +118,13 @@ async def load_cpf_contribution(db: AsyncSession) -> None:
         await db.commit()
 
 async def load_cpf_allocation(db: AsyncSession) -> None:
-    url = "https://data.gov.sg/api/action/datastore_search"
     query_params = {
         "resource_id": "d_97ec9a2ce15cbf253128e48779a3fba0",
         "limit": 1000
     }
 
     async with httpx.AsyncClient() as client:
-        response = await client.get(url, params=query_params)
+        response = await client.get(URL, params=query_params)
         response.raise_for_status()
         response_data = response.json()
 
@@ -145,7 +165,8 @@ async def load_cpf_allocation(db: AsyncSession) -> None:
 async def seed_data(db: AsyncSession) -> None:
     await load_wage_ceiling(db)
     await load_tax_rate(db)
-    await load_cpf_contribution(db)
+    await load_pr_cpf_contribution(db)
+    await load_sc_cpf_contribution(db)
     await load_cpf_allocation(db)
 
 async def main():

@@ -9,7 +9,7 @@ export default function Home() {
     const [step, setStep] = useState(1);
 
     const [employeeInfo, setEmployeeInfo] = useState({
-        residency: "",
+        citizenship: "SC",
         birthMonthYear: "",
     });
 

@@ -12,6 +12,7 @@ class CPFContribution(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     effective_from: Mapped[date] = mapped_column(Date)
+    citizenship: Mapped[str] = mapped_column(String)
     age_grp: Mapped[str] = mapped_column(String(20))
     employer_rate: Mapped[Decimal] = mapped_column(Numeric(5, 4), default=Decimal("0.0000"))
     employee_rate: Mapped[Decimal] = mapped_column(Numeric(5, 4), default=Decimal("0.0000"))

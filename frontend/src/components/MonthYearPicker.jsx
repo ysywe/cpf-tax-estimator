@@ -214,7 +214,7 @@ export default function MonthYearPicker({
                             onClick={() => setView("year")}
                             className="
                                 rounded-full
-                              bg-slate-100
+                                bg-slate-100
                                 px-5
                                 py-1
                                 font-semibold

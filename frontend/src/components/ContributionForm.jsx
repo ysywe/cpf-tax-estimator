@@ -44,6 +44,17 @@ export default function ContributionForm({
 
     const hasError = monthYearEmpty || monthYearInvalid || wageInvalid
 
+    const wageFields = [
+        {
+            label: "Ordinary Wages",
+            name: "ordinaryWages",
+        },
+        {
+            label: "Additional Wages",
+            name: "additionalWages",
+        },
+    ];
+
     return (
         <div className="mx-auto pb-15">
             {/* Header */}
@@ -97,30 +108,21 @@ export default function ContributionForm({
                         error={monthYearInvalid ? monthYearError : ""}
                     />
 
-                    <CurrencyInput
-                        label="Ordinary Wages"
-                        name="ordinaryWages"
-                        value={data.ordinaryWages}
-                        onChange={(e) => {
-                            handleInputChange(e)
-                            setSubmitted(false)
-                            setWageTouched(false);
-                        }}
-                        onBlur={() => setWageTouched(true)}
-                        error={wageTouched && wageInvalid ? wageError : ""}
-                    />
-                    <CurrencyInput
-                        label="Additional Wages"
-                        name="additionalWages"
-                        value={data.additionalWages}
-                        onChange={(e) => {
-                            handleInputChange(e)
-                            setSubmitted(false)
-                            setWageTouched(false);
-                        }}
-                        onBlur={() => setWageTouched(true)}
-                        error={wageTouched && wageInvalid ? wageError : ""}
-                    />
+                    {wageFields.map((field) => (
+                        <CurrencyInput
+                            label={field.label}
+                            name={field.name}
+                            value={data[field.name]}
+                            onChange={(e) => {
+                                handleInputChange(e)
+                                setSubmitted(false)
+                                setWageTouched(false);
+                            }}
+                            onBlur={() => setWageTouched(true)}
+                            error={wageTouched && wageInvalid ? wageError : ""}
+                        />
+                    ))}
+
                 </form>
                 <div className="
                     flex justify-between

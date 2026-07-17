@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CitizenshipRadioGroup from "./CitizenshipRadioGroup";
 import MonthYearPicker from "./MonthYearPicker";
 
 export default function Landing({
@@ -29,8 +30,23 @@ export default function Landing({
 
     const hasError = monthYearEmpty || monthYearInvalid
 
+    const citizenshipOptions = [
+        {
+            value: "SC",
+            label: "Singapore Citizen / 3rd year Permanent Resident and above",
+        },
+        {
+            value: "PR1",
+            label: "1st year Permanent Resident",
+        },
+        {
+            value: "PR2",
+            label: "2nd year Permanent Resident",
+        },
+    ];
+
     return (
-        <div className="mx-auto">
+        <div className="mx-auto pb-15">
             {/* Header */}
             <div className="text-xl text-center font-bold my-15">
                 <h2>A tool for employers and employees to estimate your CPF and personal income tax.</h2>
@@ -43,7 +59,6 @@ export default function Landing({
                 flex flex-col
                 w-full
                 mx-auto
-                rounded-lg
                 sm:w-xl
                 lg:w-2xl"
             >
@@ -51,6 +66,7 @@ export default function Landing({
                     flex flex-col
                     items-center
                     bg-white
+                    rounded-t-md
                     px-6 py-10  
                     space-y-8" 
                 >
@@ -58,6 +74,18 @@ export default function Landing({
                     <p className="text-left text-sm leading-6 text-slate-600">
                         Select your residency status and birth month year.
                     </p>
+                    
+                    <CitizenshipRadioGroup
+                        options={citizenshipOptions}
+                        value={data.citizenship}
+                        onChange={(citizenship) =>
+                            setData({
+                                ...data,
+                                citizenship,
+                            })
+                        }
+                    />
+
                     <MonthYearPicker
                         label="Birth month & year"
                         value={data.birthMonthYear}
@@ -73,6 +101,7 @@ export default function Landing({
                 </form>
                 <div className="
                     w-full
+                    rounded-b-md
                     bg-indigo-50
                     py-6 px-10"
                 >
