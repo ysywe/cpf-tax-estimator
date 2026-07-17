@@ -5,7 +5,7 @@ def parse_effective_date(value: str) -> date:
 
 def get_sc_age_group(age: int) -> str:
     if age <= 35:
-            return "35 years & below"
+        return "35 years & below"
     elif 35 < age <= 45:
         return "Above 35 - 45 years"
     elif 45 < age <= 50:
@@ -32,7 +32,7 @@ def get_pr_age_group(age: int) -> str:
         return "Above 65 to 70"
     return "Above 70"
 
-def get_cpf_age_group(age: int, citizenship: str) -> str:
-    if citizenship == "SC":
+def get_cpf_age_group(age: int, citizenship: str | None) -> str:
+    if citizenship == "SC" or citizenship is None:
         return get_sc_age_group(age)
     return get_pr_age_group(age)

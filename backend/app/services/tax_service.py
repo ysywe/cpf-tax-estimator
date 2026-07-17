@@ -11,9 +11,17 @@ async def get_chargeable_income(
     monthly_income: Decimal,
     additional_income: Decimal,
     age: int,
+    citizenship: str,
     income_date: date
     ) -> Decimal:
-    cpf_data = await get_cpf_breakdown(db, monthly_income, additional_income, age, income_date)
+    cpf_data = await get_cpf_breakdown(
+        db, 
+        monthly_income, 
+        additional_income, 
+        age, 
+        citizenship, 
+        income_date
+    )
     annual_cpf_data = cpf_data["contribution_data"]["annual_summary"]
 
     gross_annual_income = annual_cpf_data["gross_income"]
@@ -27,9 +35,17 @@ async def get_tax_breakdown(
     monthly_income: Decimal,
     additional_income: Decimal,
     age: int,
+    citizenship: str,
     income_date: date
     ) -> dict:
-    chargeable_income = await get_chargeable_income(db, monthly_income, additional_income, age, income_date)
+    chargeable_income = await get_chargeable_income(
+        db, 
+        monthly_income, 
+        additional_income, 
+        age, 
+        citizenship, 
+        income_date
+    )
 
     tax_bracket = await get_tax_bracket(db, chargeable_income, income_date)
     tax_rate = tax_bracket.tax_rate / Decimal("100.0")

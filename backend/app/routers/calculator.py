@@ -20,6 +20,7 @@ async def estimate(payload: CalculateTaxRequest, db: db_session) -> ResponseWrap
         monthly_income=payload.monthly_income,
         additional_income=payload.additional_income,
         age=payload.age,
+        citizenship=payload.citizenship,
         income_date=payload.income_date
     )
 
@@ -28,6 +29,7 @@ async def estimate(payload: CalculateTaxRequest, db: db_session) -> ResponseWrap
         monthly_income=payload.monthly_income,
         additional_income=payload.additional_income,
         age=payload.age,
+        citizenship=payload.citizenship,
         income_date=payload.income_date
     )
 

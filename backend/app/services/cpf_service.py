@@ -3,7 +3,7 @@ from decimal import Decimal, ROUND_HALF_UP, ROUND_DOWN
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.repositories.cpf_repo import get_rate, get_wage_ceiling
+from app.repositories.cpf_repo import get_cpf_record, get_alloc_record, get_wage_ceiling_record
 from app.utils.utils import get_cpf_age_group
 from app.models.cpf_contribution import CPFContribution
 from app.models.cpf_allocation import CPFAllocation
@@ -13,10 +13,11 @@ async def calculate_cpf_contribution(
     monthly_income: Decimal,
     additional_income: Decimal,
     age_grp: str,
+    citizenship: str,
     income_date: date
     ) -> dict:
-    contrib_record = await get_rate(db, CPFContribution, age_grp, income_date)
-    wage_ceiling_data = await get_wage_ceiling(db, income_date)
+    contrib_record = await get_cpf_record(db, age_grp, citizenship, income_date)
+    wage_ceiling_data = await get_wage_ceiling_record(db, income_date)
 
     ow_ceiling, aw_ceiling = wage_ceiling_data.ow_ceiling, wage_ceiling_data.aw_ceiling
 
@@ -75,7 +76,7 @@ async def calculate_cpf_allocation(
     age_grp: str,
     income_date: date
     ) -> dict:
-    alloc_record = await get_rate(db, CPFAllocation, age_grp, income_date)
+    alloc_record = await get_alloc_record(db, age_grp, income_date)
     oa_rate, sa_rate, ma_rate, ra_rate = (
         alloc_record.oa_rate,
         alloc_record.sa_rate,
@@ -100,13 +101,27 @@ async def get_cpf_breakdown(
     monthly_income: Decimal,
     additional_income: Decimal,
     age: int,
+    citizenship: str,
     income_date: date
     ) -> dict:
-    age_grp = get_cpf_age_group(age)
+    contrib_age_grp = get_cpf_age_group(age, citizenship)
+    alloc_age_grp = get_cpf_age_group(age, None)
 
-    contrib_data = await calculate_cpf_contribution(db, monthly_income, additional_income, age_grp, income_date)
+    contrib_data = await calculate_cpf_contribution(
+        db, 
+        monthly_income, 
+        additional_income, 
+        contrib_age_grp, 
+        citizenship, 
+        income_date
+    )
     total_contrib = contrib_data["annual_summary"]["total_contribution"]
-    alloc_data = await calculate_cpf_allocation(db, total_contrib, age_grp, income_date)
+    alloc_data = await calculate_cpf_allocation(
+        db, 
+        total_contrib, 
+        alloc_age_grp, 
+        income_date
+    )
 
     return {
         "contribution_data": contrib_data,

@@ -43,11 +43,13 @@ export default function Home() {
                 employeeInfo.birthMonthYear, 
                 contributionData.contributionMonthYear
             )
+            const citizenship = employeeInfo.citizenship
 
             const payload = {
                 monthly_income: Number(contributionData.ordinaryWages),
                 additional_income: Number(contributionData.additionalWages),
                 age,
+                citizenship,
                 income_date: `${contributionData.contributionMonthYear}-01`,
             };
 

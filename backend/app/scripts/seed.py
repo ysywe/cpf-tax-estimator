@@ -69,8 +69,8 @@ async def load_pr_cpf_contribution(db: AsyncSession) -> None:
                     effective_from=parse_effective_date(row["effective_from"]),
                     citizenship=row["citizenship"],
                     age_grp=row["age_group"],
-                    employer_rate=Decimal(row["employer_rate"]) / Decimal("100.0"),
-                    employee_rate=Decimal(row["employee_rate"]) / Decimal("100.0")
+                    employer_rate=Decimal(row["employer_rate"]),
+                    employee_rate=Decimal(row["employee_rate"])
                 )
             )
     await db.commit()
@@ -102,8 +102,6 @@ async def load_sc_cpf_contribution(db: AsyncSession) -> None:
                     "Employee": Decimal("0.0000")
                 }
             matrix[key][contributing_party] = contribution_rate
-
-        await db.execute(delete(CPFContribution))
     
         for (effec_from, age_grp), rates in matrix.items():
             db.add(
@@ -116,6 +114,11 @@ async def load_sc_cpf_contribution(db: AsyncSession) -> None:
                 )
             )
         await db.commit()
+
+async def load_cpf_contribution(db: AsyncSession) -> None:
+    await db.execute(delete(CPFContribution))
+    await load_pr_cpf_contribution(db)
+    await load_sc_cpf_contribution(db)
 
 async def load_cpf_allocation(db: AsyncSession) -> None:
     query_params = {
@@ -165,8 +168,7 @@ async def load_cpf_allocation(db: AsyncSession) -> None:
 async def seed_data(db: AsyncSession) -> None:
     await load_wage_ceiling(db)
     await load_tax_rate(db)
-    await load_pr_cpf_contribution(db)
-    await load_sc_cpf_contribution(db)
+    await load_cpf_contribution(db)
     await load_cpf_allocation(db)
 
 async def main():
