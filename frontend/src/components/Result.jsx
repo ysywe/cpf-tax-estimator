@@ -1,5 +1,5 @@
 import { formatCurrency, formatPercent } from "../utils/utils";
-import ResultAccordion from "./ResultAccordion";
+import Accordion from "./ui/Accordion";
 import ContributionSection from "./ContributionSection";
 import AllocationSection from "./AllocationSection";
 import TaxSection from "./TaxSection";
@@ -25,7 +25,7 @@ export default function Result({ result, inputs }) {
             p-8
             sm:max-w-3xl"
         >   
-            <ResultAccordion
+            <Accordion
                 defaultOpen
                 title="Calculation Summary"
                 subtitle=""
@@ -36,7 +36,7 @@ export default function Result({ result, inputs }) {
                     inputs={inputs} 
                     result={result}
                 />
-            </ResultAccordion>
+            </Accordion>
 
             <h1 className="
                 text-center 
@@ -47,7 +47,7 @@ export default function Result({ result, inputs }) {
             >Results
             </h1>
             
-            <ResultAccordion
+            <Accordion
                 title="Total CPF contributions"
                 subtitle="Employee and Employer CPF contribution"
                 amount={`${formatCurrency(total_contribution)}`}
@@ -55,9 +55,9 @@ export default function Result({ result, inputs }) {
                 <ContributionSection 
                     result={result}
                 />
-            </ResultAccordion>
+            </Accordion>
 
-            <ResultAccordion
+            <Accordion
                 title="CPF Allocation"
                 subtitle="Allocation of CPF accounts"
                 amount=""
@@ -65,9 +65,9 @@ export default function Result({ result, inputs }) {
                 <AllocationSection
                     result={result}
                 />
-            </ResultAccordion>
+            </Accordion>
 
-            <ResultAccordion
+            <Accordion
                 title="Income Tax"
                 subtitle="Estimated tax payable"
                 amount={`${formatCurrency(total_tax_payable)}`}
@@ -75,7 +75,7 @@ export default function Result({ result, inputs }) {
                 <TaxSection
                     result={result}
                 />
-            </ResultAccordion>
+            </Accordion>
 
         </div>
     );

@@ -5,10 +5,25 @@ export default function CitizenshipRadioGroup({
     onChange,
 }) {
     return (
-        <div className="space-y-3">
+        <div className="space-y-2 max-w-sm">
             <label className="block font-light">
                 Citizenship Status
             </label>
+            <p className="
+                text-slate-400 
+                font-light
+                italic"
+            >Contribution rates for Permanent Residents are based on their&nbsp;
+                <a className="
+                    underline 
+                    text-indigo-800 
+                    font-semibold
+                    hover:text-indigo-700" 
+                    href="https://www.cpf.gov.sg/employer/employer-obligations/how-much-cpf-contributions-to-pay#section-header-1452036554"
+                    target="_blank"
+                >number of years
+                </a>.
+            </p>
 
             {options.map((option) => (
                 <label

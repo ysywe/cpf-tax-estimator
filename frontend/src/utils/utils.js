@@ -15,7 +15,7 @@ export function formatMonthYear(value) {
     const date = new Date(Number(year), Number(month) - 1);
 
     return date.toLocaleString("en-SG", {
-        month: "long",
+        month: "short",
         year: "numeric",
     });
 }

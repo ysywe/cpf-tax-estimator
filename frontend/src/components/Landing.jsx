@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CitizenshipRadioGroup from "./CitizenshipRadioGroup";
-import MonthYearPicker from "./MonthYearPicker";
+import CitizenshipRadioGroup from "./ui/CitizenshipRadioGroup";
+import MonthYearPicker from "./ui/MonthYearPicker/MonthYearPicker";
 
 export default function Landing({
     data, 
@@ -70,8 +70,8 @@ export default function Landing({
                     px-6 py-10  
                     space-y-8" 
                 >
-                    <h2 className="text-center font-bold text-3xl text-indigo-800">Employee information</h2>
-                    <p className="text-left text-sm leading-6 text-slate-600">
+                    <h2 className="font-bold text-3xl text-indigo-800">Employee information</h2>
+                    <p className="text-sm leading-6 text-slate-600">
                         Select your residency status and birth month year.
                     </p>
                     

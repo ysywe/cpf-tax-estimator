@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import MonthYearPicker from "./MonthYearPicker";
-import CurrencyInput from "./CurrencyInput";
+import MonthYearPicker from "./ui/MonthYearPicker/MonthYearPicker";
+import CurrencyInput from "./ui/CurrencyInput";
 
 export default function ContributionForm({
     data, 
@@ -10,6 +10,9 @@ export default function ContributionForm({
     onBack, 
     onSubmit
 }) {
+    const [submitted, setSubmitted] = useState(false);
+    const [wageTouched, setWageTouched] = useState(false);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
@@ -19,30 +22,38 @@ export default function ContributionForm({
         });
     };
 
-    const [submitted, setSubmitted] = useState(false);
-    const [wageTouched, setWageTouched] = useState(false);
+    const totalWages =
+        Number(data.ordinaryWages || 0) +
+        Number(data.additionalWages || 0);
 
-    const monthYearEmpty = !data.contributionMonthYear;
+    const hasAnyWage =
+        data.ordinaryWages !== "" ||
+        data.additionalWages !== "";
+
+    const wageInvalid =
+        hasAnyWage &&
+        totalWages <= 50;
 
     const monthYearInvalid =
         data.contributionMonthYear &&
-            birthMonthYear > data.contributionMonthYear
+        birthMonthYear > data.contributionMonthYear;
+
+    const canSubmit =
+        hasAnyWage &&
+        !monthYearInvalid &&
+        !wageInvalid;
 
     const monthYearError =
         monthYearInvalid
             ? "Value must be more than birth month and year."
             : "";
 
-    const wageInvalid = 
-        (data.ordinaryWages !== "" || data.additionalWages !== "")
-        && (Number(data.ordinaryWages) + Number(data.additionalWages) <= 50)
-    
     const wageError = 
         wageInvalid
         ? "The sum Ordinary wages and additional wages must be more than $50."
         : "";
 
-    const hasError = monthYearEmpty || monthYearInvalid || wageInvalid
+    const hasError = monthYearInvalid || wageInvalid
 
     const wageFields = [
         {
@@ -89,7 +100,7 @@ export default function ContributionForm({
                         items-center
                         bg-white
                         px-6 py-10              
-                        space-y-8"        
+                        space-y-6"        
                 >
                     <h2 className="font-bold text-left text-2xl text-indigo-800">Contribution details</h2>
                     <p className="text-sm leading-6 text-slate-600">
@@ -108,8 +119,34 @@ export default function ContributionForm({
                         error={monthYearInvalid ? monthYearError : ""}
                     />
 
+                    <div className="
+                        w-sm
+                        pt-2
+                        border-t border-slate-200"
+                    >
+                        <h4>Wages</h4>
+                        <p className="
+                            mt-2
+                            font-light 
+                            italic
+                            text-slate-400"
+                        >
+                            Sum of Ordinary and Additional wages must be more than $50 to attract CPF contributions. You can check&nbsp;
+                            <a className="
+                                underline 
+                                text-indigo-800 
+                                font-semibold
+                                hover:text-indigo-700"
+                                href="https://www.cpf.gov.sg/employer/employer-obligations/what-payments-attract-cpf-contributions#section-header-1659668379"
+
+                            >what payments attract CPF and how they are classified
+                            </a>.
+                        </p>
+                    </div>
+
                     {wageFields.map((field) => (
                         <CurrencyInput
+                            key={field.name}
                             label={field.label}
                             name={field.name}
                             value={data[field.name]}
@@ -147,7 +184,7 @@ export default function ContributionForm({
                     <button
                         form="cpf-form"
                         type="submit"
-                        disabled={submitted && hasError}
+                        disabled={!canSubmit}
                         className="
                             p-3                    
                             min-w-40

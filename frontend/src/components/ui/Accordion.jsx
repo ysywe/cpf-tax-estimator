@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ResultAccordion({
+export default function Accordion({
     title,
     subtitle,
     amount,
