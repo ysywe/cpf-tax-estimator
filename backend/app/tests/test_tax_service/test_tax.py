@@ -2,12 +2,11 @@ import pytest
 from datetime import date
 from decimal import Decimal
 
-from app.services.tax_service import get_tax_breakdown, get_chargeable_income
+from app.services.tax_service import get_tax_breakdown
 
 pytestmark = pytest.mark.asyncio
 
 # Zero chargeable income
-@pytest.mark.asyncio
 async def test_tax_no_chargeable_income(db_session):
     result = await get_tax_breakdown(
         db=db_session,
@@ -37,7 +36,6 @@ async def test_tax_breakdown_sc(db_session):
     assert result["effective_tax_rate"] == Decimal("6.11")
 
 # Tax breakdown for PR1 citizenship
-@pytest.mark.asyncio
 async def test_tax_breakdown_pr1(db_session):
     result = await get_tax_breakdown(
         db=db_session,
@@ -53,7 +51,6 @@ async def test_tax_breakdown_pr1(db_session):
     assert result["effective_tax_rate"] == Decimal("0.07")
 
 # Tax breakdown for PR2 citizenship
-@pytest.mark.asyncio
 async def test_tax_breakdown_pr2(db_session):
     result = await get_tax_breakdown(
         db=db_session,

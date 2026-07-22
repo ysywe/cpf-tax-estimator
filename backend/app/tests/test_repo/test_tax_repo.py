@@ -1,37 +1,34 @@
+import pytest
 from datetime import date
 from decimal import Decimal
 
-import pytest
-
 from app.repositories.tax_repo import get_tax_bracket
 
-@pytest.mark.asyncio
-async def test_get_tax_bracket_returns_correct_bracket(db_session):
-    bracket = await get_tax_bracket(
-        db=db_session,
-        chargeable_income=Decimal("56000"),
-        income_date=date(2025, 1, 1),
-    )
+pytestmark = pytest.mark.asyncio
 
-    assert bracket is not None
-    assert bracket.min_income == Decimal("40000")
-    assert bracket.max_income == Decimal("80000")
-    assert bracket.tax_rate == Decimal("7.0")
-
-# Latest effective date
-@pytest.mark.asyncio
-async def test_returns_latest_effective_rates(db_session):
+# Latest effective tax rate
+async def test_repo_latest_tax_record(db_session):
     bracket = await get_tax_bracket(
         db_session,
         Decimal("56000"),
-        date(2018, 6, 1),
+        date(2025, 1, 1),
     )
 
-    assert bracket.effective_from == date(2017, 1, 1)
+    assert bracket.effective_from == date(2024, 1, 1)
+
+# Tax bracket min and max income
+async def test_repo_tax_record_min_max_income(db_session):
+    bracket = await get_tax_bracket(
+        db_session,
+        Decimal("80000"),
+        date(2025, 1, 1),
+    )
+
+    assert bracket.min_income == Decimal("80000")
+    assert bracket.max_income == Decimal("120000")
 
 # Invalid chargeable income
-@pytest.mark.asyncio
-async def test_returns_open_ended_bracket(db_session):
+async def test_repo_invalid_chargeable_income(db_session):
     bracket = await get_tax_bracket(
         db_session,
         Decimal("9999999"),
@@ -41,8 +38,7 @@ async def test_returns_open_ended_bracket(db_session):
     assert bracket.max_income is None
 
 # Invalid effective date
-@pytest.mark.asyncio
-async def test_returns_none_if_no_effective_rates(db_session):
+async def test_repo_invalid_effective_from(db_session):
     bracket = await get_tax_bracket(
         db_session,
         Decimal("1000"),

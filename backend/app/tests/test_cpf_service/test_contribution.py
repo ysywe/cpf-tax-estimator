@@ -97,7 +97,7 @@ async def test_cpf_above_55_age_grp(db_session):
     assert rates["employee_rate"] == Decimal("0.18")
     assert rates["total_rate"] == Decimal("0.34")
 
-# PR1 citizenship
+# PR1 citizenship 
 async def test_cpf_pr1_citizenship(db_session):
     result = await calculate_cpf_contribution(
         db=db_session,
@@ -113,6 +113,7 @@ async def test_cpf_pr1_citizenship(db_session):
     assert rates["employee_rate"] == Decimal("0.05")
     assert rates["total_rate"] == Decimal("0.12")
 
+# PR2 citizenship 
 async def test_cpf_pr2_citizenship(db_session):
     result = await calculate_cpf_contribution(
         db=db_session,

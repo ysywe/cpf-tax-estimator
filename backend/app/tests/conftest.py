@@ -20,7 +20,6 @@ def postgres_container():
 
         yield postgres
 
-
 @pytest_asyncio.fixture(scope="session")
 async def db_engine(postgres_container):
 
@@ -44,7 +43,6 @@ async def db_engine(postgres_container):
     yield engine
 
     await engine.dispose()
-
 
 @pytest_asyncio.fixture
 async def db_session(
