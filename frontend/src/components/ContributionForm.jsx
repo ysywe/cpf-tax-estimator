@@ -22,6 +22,10 @@ export default function ContributionForm({
         });
     };
 
+    const MIN_CONTRIBUTION_MONTH = "2015-01";
+    const today = new Date();
+    const MAX_CONTRIBUTION_MONTH = `${today.getFullYear()}-12`;
+
     const totalWages =
         Number(data.ordinaryWages || 0) +
         Number(data.additionalWages || 0);
@@ -34,18 +38,28 @@ export default function ContributionForm({
         hasAnyWage &&
         totalWages <= 50;
 
+    const monthYearOutofBound =
+        data.contributionMonthYear &&
+    (
+        data.contributionMonthYear < MIN_CONTRIBUTION_MONTH ||
+        data.contributionMonthYear > MAX_CONTRIBUTION_MONTH
+    );
+
     const monthYearInvalid =
         data.contributionMonthYear &&
-        birthMonthYear > data.contributionMonthYear;
+        birthMonthYear >= data.contributionMonthYear;
 
     const canSubmit =
         hasAnyWage &&
         !monthYearInvalid &&
+        !monthYearOutofBound &&
         !wageInvalid;
 
     const monthYearError =
-        monthYearInvalid
-            ? "Value must be more than birth month and year."
+    monthYearInvalid
+        ? "Contribution month must be after the birth month and year."
+        : monthYearOutofBound
+            ? `Contribution month must be between Jan 2015 and Dec ${today.getFullYear()}.`
             : "";
 
     const wageError = 
@@ -53,7 +67,7 @@ export default function ContributionForm({
         ? "The sum Ordinary wages and additional wages must be more than $50."
         : "";
 
-    const hasError = monthYearInvalid || wageInvalid
+    const hasError = monthYearInvalid || monthYearOutofBound || wageInvalid
 
     const wageFields = [
         {
@@ -116,7 +130,7 @@ export default function ContributionForm({
                             })
                             setSubmitted(false);
                         }}
-                        error={monthYearInvalid ? monthYearError : ""}
+                        error={monthYearError}
                     />
 
                     <div className="
