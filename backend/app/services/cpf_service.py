@@ -5,8 +5,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.repositories.cpf_repo import get_cpf_record, get_alloc_record, get_wage_ceiling_record
 from app.utils.utils import get_cpf_age_group
-from app.models.cpf_contribution import CPFContribution
-from app.models.cpf_allocation import CPFAllocation
 
 async def calculate_cpf_contribution(
     db: AsyncSession,
@@ -46,13 +44,10 @@ async def calculate_cpf_contribution(
     )
     annual_employer_share  = annual_total_contrib - annual_employee_share
 
-    take_home_pay = monthly_income - monthly_employee_share
-
     return {
         "monthly_summary": {
             "employee_share": monthly_employee_share,
             "employer_share": monthly_employer_share,
-            "take_home_pay": take_home_pay
         },
         "annual_summary": {
             "gross_income": monthly_income * 12 + additional_income,

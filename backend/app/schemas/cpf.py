@@ -5,7 +5,6 @@ from pydantic import BaseModel, Field, computed_field
 class MonthlySummary(BaseModel):
     employee_share: Decimal = Field(ge=0, description="Monthly employee CPF contribution")
     employer_share: Decimal = Field(ge=0, description="Monthly employer CPF contribution")
-    take_home_pay: Decimal = Field(ge=0, description="Monthly net income received by employee")
 
 class AnnualSummary(BaseModel):
     gross_income: Decimal = Field(ge=0, description="Total annual income in addition of annual bonus")
